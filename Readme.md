@@ -126,3 +126,5 @@ controllers: Camada de entrada da aplicação (interface com o mundo externo). R
 presenters: Transforma os dados da camada de aplicação em um formato que será retornado para os usuários.
 - **5. tests**
 Contém os testes unitários, de integração, ou de aceitação. Idealmente, o nome dos arquivos deve seguir a nomenclatura dos casos de uso ou módulos testados.
+
+#### Para criar a estrutura de pastas, execute o arquivo create_structure.bat
