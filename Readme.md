@@ -61,3 +61,68 @@ http://localhost:3000/api-docs
 - **jest:** Biblioteca de testes.
 - **ts-node, ts-node-dev:** Ferramentas para rodar TypeScript sem necessidade de compilação prévia.
 - **tsconfig-paths:** Suporte para resolução de caminhos com base nas configurações do tsconfig.json
+
+### Sugestão de estrutura de pastas para a Clean Architecture. 
+
+Nesta abordagem, os componentes são organizados de forma modular, separando claramente as responsabilidades e facilitando a manutenção e evolução do código.
+
+``` bash
+├── src
+│   ├── application
+│   │   ├── use-cases
+│   │   │   └── exemploUseCase.ts
+│   │   └── services
+│   │       └── exemploService.ts
+│   ├── domain
+│   │   ├── entities
+│   │   │   └── exemploEntity.ts
+│   │   ├── repositories
+│   │   │   └── exemploRepository.ts
+│   │   └── value-objects
+│   │       └── exemploValueObject.ts
+│   ├── infrastructure
+│   │   ├── database
+│   │   │   └── exemploModel.ts
+│   │   ├── mappers
+│   │   │   └── exemploMapper.ts
+│   │   ├── repositories
+│   │   │   └── exemploRepositoryImpl.ts
+│   │   ├── webserver
+│   │   │   ├── express
+│   │   │   │   ├── routes
+│   │   │   │   │   └── exemploRoute.ts
+│   │   │   └── middlewares
+│   │   │       └── exemploMiddleware.ts
+│   ├── interfaces
+│   │   ├── controllers
+│   │   │   └── exemploController.ts
+│   │   └── presenters
+│   │       └── exemploPresenter.ts
+│   └── index.ts
+├── tests
+│   └── exemplo.test.ts
+├── .env
+├── .eslintrc.js
+├── .prettierrc
+├── jest.config.js
+└── tsconfig.json
+```
+ 
+### Descrição da Estrutura:
+- **1. src/application**
+use-cases: Contém os casos de uso da aplicação. Aqui é onde a lógica de negócios se concentra.
+services: Serviços que encapsulam regras ou lógicas específicas que podem ser reutilizadas por múltiplos casos de uso.
+- **2. src/domain**
+entities: Define as entidades de domínio. Representa as regras de negócios centrais e invariantes.
+repositories: Interfaces para os repositórios de dados. Elas são usadas para definir os contratos que serão implementados pela infraestrutura.
+value-objects: Contém objetos de valor, que são componentes imutáveis e podem representar atributos do domínio.
+- **3. src/infrastructure**
+database: Contém a implementação da camada de persistência de dados, como os modelos do banco de dados (ex: Sequelize, Mongoose).
+mappers: Realiza a transformação entre as entidades de domínio e os modelos da infraestrutura.
+repositories: Implementações concretas dos repositórios definidos no domínio. Essa camada conhece a infraestrutura de dados, como bancos de dados ou APIs externas.
+webserver: Configuração do servidor, como Express, além de middlewares e rotas.
+- **4. src/interfaces**
+controllers: Camada de entrada da aplicação (interface com o mundo externo). Recebe as requisições HTTP e delega as chamadas aos casos de uso.
+presenters: Transforma os dados da camada de aplicação em um formato que será retornado para os usuários.
+- **5. tests**
+Contém os testes unitários, de integração, ou de aceitação. Idealmente, o nome dos arquivos deve seguir a nomenclatura dos casos de uso ou módulos testados.
