@@ -1,54 +1,63 @@
-## Dependencies
+## ESLint e Prettier
+- **ESLint**: Utilizado para identificar e corrigir problemas no código.
+- **Prettier**: Usado para garantir um código bem formatado.
 
-# Pacotes essenciais para o funcionamento da aplicação:
-  > express:   Framework para construir APIs.
-  > pg-promise: Biblioteca para interagir com bancos de dados PostgreSQL usando Promises.
-  > swagger-jsdoc, swagger-ui-express: Ferramentas para gerar e exibir documentação de API com Swagger.
-  > uuid: Geração de UUIDs (identificadores únicos).
-  > mongoose: ODM (Object Data Modeling) para trabalhar com MongoDB
+## Verifique o código com o ESLint:
 
-## DevDependencies
+``` bash 
+npm run lint 
+Formate o código com o Prettier:
+```
 
-# Pacotes relacionados ao desenvolvimento:
+``` bash
+Copiar código
+npm run prettier
+```
 
-  > @types/express, @types/node: Tipos TypeScript para bibliotecas como Express e Node.js.
-  > eslint, prettier: Ferramentas de linting e formatação de código.
-  > jest: Biblioteca de testes.
-  > ts-node, ts-node-dev: Ferramentas para rodar TypeScript sem necessidade de compilação prévia.
-  > tsconfig-paths: Suporte para resolução de caminhos com base nas configurações do tsconfig.json
+## Hooks de Pré-commit
+Foi configurado o husky e o lint-staged para garantir que o código seja validado e formatado automaticamente antes de cada commit. Isso ajuda a manter o padrão de código e evitar problemas no repositório.
 
-## Scripts - Separarados por ambientes de execução (produção e desenvolvimento)
+## Cobertura de Código
+É importante garantir que o código esteja bem testado. O relatório de cobertura ajuda a identificar áreas que precisam de mais atenção.
 
-"scripts": {
-  "test:coverage": "jest --coverage",
-  "start": "node dist/index.js",
-  "build": "tsc -p tsconfig.json",
-  "dev": "ts-node-dev -r tsconfig-paths/register --transpile-only --respawn --ignore-watch node_modules src/index.ts"
-}
+## Documentação da API
+Este projeto utiliza Swagger para documentar a API. Para acessar a documentação, inicie o servidor e acesse:
+
+``` bash
+Copiar código
+http://localhost:3000/api-docs
+```
+
+# Scripts
+### Desenvolvimento
+- **npm run dev:** Inicia o servidor em modo de desenvolvimento, com reinicialização automática (nodemon) quando houver alterações no código.
+- **npm run lint:** Executa o ESLint para verificar se o código segue os padrões estabelecidos.
+- **npm run prettier:** Formata o código de acordo com as regras do Prettier.
+
+### Produção
+- **npm run build:** Compila o TypeScript para JavaScript e gera a pasta dist com o código de produção.
+- **npm start:** Inicia o servidor utilizando o código já compilado na pasta dist.
+
+### Testes
+- **npm run test:** Executa os testes utilizando o jest.
+- **npm run test:coverage:** Executa os testes e gera um relatório de cobertura de código.
+
+# Dependencies
+
+### Pacotes essenciais para o funcionamento da aplicação:
+- **express:**   Framework para construir APIs.
+- **pg-promise:** Biblioteca para interagir com bancos de dados PostgreSQL usando Promises.
+- **swagger-jsdoc, swagger-ui-express:** Ferramentas para gerar e exibir documentação de API com Swagger.
+- **uuid:** Geração de UUIDs (identificadores únicos).
+- **mongoose:** ODM (Object Data Modeling) para trabalhar com MongoDB
 
 
-## Testes com cobertura de código
-Uma boa prática é garantir que seus testes também estejam verificando a cobertura do código. Isso pode ser feito com o jest e o pacote jest-coverage.
+# DevDependencies
 
-"scripts": {
-  "test:coverage": "jest --coverage"
-}
+### Pacotes relacionados ao desenvolvimento:
 
-## Configurar ESLint e Prettier adequadamente
-Arquivos .eslintrc.js e .prettierrc
-
-## Husky e Lint-Staged
-Ferramentas como husky e lint-staged podem ser úteis para adicionar ganchos de pré-commit que garantem que o código está sempre bem formatado e validado antes de ser enviado para o controle de versão. Isso melhora a qualidade do código e a consistência do repositório
-
-"husky": {
-  "hooks": {
-    "pre-commit": "lint-staged"
-  }
-},
-"lint-staged": {
-  "*.ts": [
-    "eslint --fix",
-    "prettier --write",
-    "git add"
-  ]
-}
+- **@types/express, @types/node:** Tipos TypeScript para bibliotecas como Express e Node.js.
+- **eslint, prettier:** Ferramentas de linting e formatação de código.
+- **jest:** Biblioteca de testes.
+- **ts-node, ts-node-dev:** Ferramentas para rodar TypeScript sem necessidade de compilação prévia.
+- **tsconfig-paths:** Suporte para resolução de caminhos com base nas configurações do tsconfig.json
