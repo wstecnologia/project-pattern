@@ -73,6 +73,9 @@ Nesta abordagem, os componentes são organizados de forma modular, separando cla
 │   │   │   └── exemploUseCase.ts
 │   │   └── services
 │   │       └── exemploService.ts
+│   ├── config
+│   │   ├── server.ts
+│   │   └── swagger.ts
 │   ├── domain
 │   │   ├── entities
 │   │   │   └── exemploEntity.ts
@@ -93,6 +96,8 @@ Nesta abordagem, os componentes são organizados de forma modular, separando cla
 │   │   │   │   │   └── exemploRoute.ts
 │   │   │   └── middlewares
 │   │   │       └── exemploMiddleware.ts
+│   │   │   └── swagger
+│   │   │       └── orderPath.ts
 │   ├── interfaces
 │   │   ├── controllers
 │   │   │   └── exemploController.ts
