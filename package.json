@@ -5,9 +5,9 @@
   "main": "index.ts",
   "scripts": {
     "test:coverage": "jest --coverage",
-    "start": "dotenv -e .env node dist/index.js",
+    "start": "node dist/index.js",
     "build": "tsc -p tsconfig.json",
-    "dev": "dotenv -e .env ts-node-dev -r tsconfig-paths/register --transpile-only --respawn --ignore-watch node_modules src/index.ts"
+    "dev": "ts-node-dev -r tsconfig-paths/register --transpile-only --respawn --ignore-watch node_modules src/index.ts"
   },
   "husky": {
     "hooks": {
@@ -26,8 +26,10 @@
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.4.5",
+    "@prisma/client": "^5.21.1",
+    "prisma": "^5.21.1",
     "express": "^4.19.2",
-    "mongoose": "^8.7.2",
+    "mongodb": "^6.10.0",
     "pg-promise": "^11.7.8",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0",
